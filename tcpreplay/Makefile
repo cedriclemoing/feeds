@@ -18,7 +18,7 @@ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@SF/$(PKG_NAME)
 
 PKG_MAINTAINER:=TODO
-PKG_LICENSE:=GPLv2
+PKG_LICENSE:=GPLv3
 PKG_LICENSE_FILES:=COPYING
 
 PKG_FIXUP:=autoreconf
@@ -33,7 +33,7 @@ CONFIGURE_ARGS += \
 define Package/tcpreplay
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+libpcap
+  DEPENDS:=+libpcap +librt
   TITLE:=TODO
   URL:=http://tcpreplay.appneta.com/
 endef
@@ -47,6 +47,13 @@ MAKE_FLAGS += \
 
 define Package/tcpreplay/install
 	$(INSTALL_DIR) $(1)/usr/bin
+	$(INSTALL_BIN) ${PKG_BUILD_DIR}/src/tcpprep  $(1)/usr/bin/
+	$(INSTALL_BIN) ${PKG_BUILD_DIR}/src/tcprewrite $(1)/usr/bin/
+	$(INSTALL_BIN) ${PKG_BUILD_DIR}/src/tcpreplay $(1)/usr/bin/
+	$(INSTALL_BIN) ${PKG_BUILD_DIR}/src/tcpliveplay $(1)/usr/bin/
+	$(INSTALL_BIN) ${PKG_BUILD_DIR}/src/tcpreplay-edit $(1)/usr/bin/
+	$(INSTALL_BIN) ${PKG_BUILD_DIR}/src/tcpbridge $(1)/usr/bin/
+	$(INSTALL_BIN) ${PKG_BUILD_DIR}/src/tcpcapinfo $(1)/usr/bin/
 endef
 
 $(eval $(call BuildPackage,tcpreplay))
