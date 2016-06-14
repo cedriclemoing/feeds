@@ -1,0 +1,10 @@
+--- bittwist-linux-2.0/Makefile.orig	2016-06-09 17:03:00.944649974 +0200
++++ bittwist-linux-2.0/Makefile	2016-06-09 17:03:27.456310521 +0200
+@@ -1,6 +1,6 @@
+ SHELL = /bin/sh
+ 
+-prefix = /usr
++prefix ?= /usr
+ exec_prefix = ${prefix}
+ bindir = ${exec_prefix}/bin
+ mandir = ${prefix}/share/man/man1
